@@ -1,0 +1,90 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe4e1;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+            border-radius: 10px;
+        }
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: red;
+            color: white;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine? 💖</h1>
+    <div class="buttons">
+        <button class="btn yes" onclick="sayYes()">Yes</button>
+        <button class="btn no" onclick="changeNoText()">No</button>
+    </div>
+    
+    <script>
+        let noTexts = [
+            "Are you sure? 😢", 
+            "I'll be very sad 💔", 
+            "Think again... 🥺", 
+            "I might cry 😭", 
+            "Don't do this to me! 😔", 
+            "You have no choice! 😆"
+        ];
+        let index = 0;
+        let yesBtn = document.querySelector(".yes");
+
+        function changeNoText() {
+            let noBtn = document.querySelector(".no");
+            noBtn.textContent = noTexts[index % noTexts.length];
+            index++;
+
+            // Increase Yes button size
+            let currentSize = parseInt(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentSize + 8) + "px";
+            yesBtn.style.padding = (currentSize + 12) + "px";
+            
+            if (currentSize >= 60) {
+                yesBtn.style.fontSize = "100px";
+                yesBtn.style.padding = "50px";
+                yesBtn.textContent = "YOU HAVE TO SAY YES!";
+                noBtn.classList.add("hidden");
+            }
+        }
+
+        function sayYes() {
+            document.body.innerHTML = "<h1>Yay! 😍 Happy Valentine's Day! 💖</h1>";
+        }
+    </script>
+</body>
+</html>
